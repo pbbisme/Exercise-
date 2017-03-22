@@ -1,0 +1,29 @@
+
+.normal {
+  font-family: Georgia, sans-serif;
+  text-align: center;
+}
+
+.header{
+    /*position: fixed;*/
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    background: #404040;
+    /*border-bottom:1px solid #fff; */
+    color: #fff;
+}
+.footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    background: #404040;
+    color: #fff;
+}
