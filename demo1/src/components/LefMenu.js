@@ -8,11 +8,8 @@ function LefMenu() {
     <div className={styles.normal}>
       <Menu
         theme={"dark"}
-        style={{ width: 240 }}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-        >
-        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
+        style={{ width: 240 }}>
+        <SubMenu key="sub1" title={<span><Icon type="mail" /><span>合同列表</span></span>}>
           <Menu.Item key="1">Option 1</Menu.Item>
           <Menu.Item key="2">Option 2</Menu.Item>
           <Menu.Item key="3">Option 3</Menu.Item>

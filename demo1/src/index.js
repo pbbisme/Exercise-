@@ -6,6 +6,13 @@ const app = dva();
 
 app.model(require("./models/login"));
 
+
+app.model(require("./models/users1"));
+
+
+app.model(require("./models/ContList"));
+
+
 // 2. Plugins
 // app.use({});
 
