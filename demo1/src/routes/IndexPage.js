@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
+import { Link } from 'dva/router'
 import styles from './IndexPage.css';
 import LeftMenu from '../components/LefMenu.js';
 import ContList from '../components/ContList.js';
@@ -7,7 +8,7 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-function IndexPage({ContListData}) {
+function IndexPage({ ContListData }) {
   return (
     <Layout>
       <Header className="header">
@@ -18,9 +19,9 @@ function IndexPage({ContListData}) {
           defaultSelectedKeys={['2']}
           style={{ lineHeight: '64px' }}
         >
-        <Menu.Item>
-          <span>后台管理</span>
-        </Menu.Item>
+          <Menu.Item>
+            <span>后台管理</span>
+          </Menu.Item>
         </Menu>
       </Header>
       <Layout>
@@ -32,8 +33,13 @@ function IndexPage({ContListData}) {
             style={{ height: '100%' }}
           >
             <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
-              <Menu.Item key="1">option1</Menu.Item>
-              <Menu.Item key="2">option2</Menu.Item>
+              <Menu.Item key="1">
+                <Link to="/">合同列表
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/login">登录
+                </Link></Menu.Item>
               <Menu.Item key="3">option3</Menu.Item>
               <Menu.Item key="4">option4</Menu.Item>
             </SubMenu>
@@ -53,7 +59,7 @@ function IndexPage({ContListData}) {
         </Sider>
         <Layout>
           <Content style={{ background: '#fff', padding: 24, margin: 0, minHeight: 280 }}>
-            <ContList {...ContListData}/>
+            <ContList {...ContListData} />
           </Content>
         </Layout>
       </Layout>

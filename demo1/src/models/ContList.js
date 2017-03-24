@@ -1,30 +1,41 @@
-// import contListservice from "../services/contListservice.js";
-import { list } from "../services/contListservice.js";
+import * as  contListservice from "../services/contListservice.js";
+// import { list } from "../services/contListservice.js";
 export default {
   namespace: 'ContList',
   state: {
-    contListData: []
+    contListData: [],
+    pageSize: 10,
+    pageNum: 1
   },
   reducers: {
-    querySuccess(state, {payload}) {
+    querySuccess(state, { payload }) {
       console.log(payload)
-      return {...state,contListData:payload}
+      return { ...state, contListData: payload }
     }
   },
   effects: {
-    *getContList({ payload }, { call, put }) {
-      const data = yield call(list, payload);
+    *getContList({ payload }, { call, put, select }) {
+      const page = yield select(state =>({ ...state.ContList.pageSize,...state.ContList.pageNum}));
+      const data = yield call(contListservice.list1, { ...page })
+      debugger;
       yield put({
         type: 'querySuccess',
         payload: data.data.object.list
       });
       console.log(data)
-      alert("查询合同列表信息成功")
-    }
+    },
+    *reload(action, { put, select }) {
+      const page = yield select(state => state.users.page);
+      yield put({ type: 'fetch', payload: { page } });
+    },
   },
   subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ type: 'getContList' })
+    setup({ dispatch, history }) {
+      history.listen(({ pathname }) => {
+        if (pathname === '/') {
+          dispatch({ type: 'getContList' })
+        }
+      });
     }
   },
 };

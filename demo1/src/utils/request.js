@@ -1,5 +1,6 @@
 import fetch from 'dva/fetch';
 import apiConfig from './apiConfig.js';
+require('es6-promise').polyfill();
 
 function parseJSON(response) {
   return response.json();
