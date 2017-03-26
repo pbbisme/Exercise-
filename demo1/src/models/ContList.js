@@ -16,7 +16,8 @@ export default {
   effects: {
     *getContList({ payload }, { call, put, select }) {
       const page = yield select(state =>({ ...state.ContList.pageSize,...state.ContList.pageNum}));
-      const data = yield call(contListservice.list1, { ...page })
+      debugger;
+      const data = yield call(contListservice.list0, { ...page })
       debugger;
       yield put({
         type: 'querySuccess',

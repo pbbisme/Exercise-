@@ -12,7 +12,7 @@ export default function request (url, options) {
   }
   const { method = 'get' } = options
   return Ajax.ajax({
-    fetchUrl,
+    fetchUrl, 
     method,
     data: options.data || {},
     processData: method === 'get',

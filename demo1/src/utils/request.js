@@ -1,4 +1,4 @@
-import fetch from 'dva/fetch';
+import fetch from 'fetch-polyfill';
 import apiConfig from './apiConfig.js';
 require('es6-promise').polyfill();
 
@@ -25,6 +25,7 @@ function checkStatus(response) {
  */
 export default function request(url, options) {
   let fetchUrl = apiConfig.host + url;
+  options.credentials='include';
   return fetch(fetchUrl, options)
     .then(checkStatus)
     .then(parseJSON)
