@@ -3,17 +3,21 @@ import './index.css';
 import { browserHistory } from 'dva/router';
 // 1. Initialize
 const app = dva({
-  history: browserHistory,
+  history: browserHistory
 });
 
 
-app.model(require("./models/login"));
+// app.model({});
+// app.model(require("./models/login"));
 
 
-app.model(require("./models/users1"));
+// app.model(require("./models/contContail"));
 
 
-app.model(require("./models/ContList"));
+// app.model(require("./models/users1"));
+
+
+// app.model(require("./models/ContList"));
 
 
 // 2. Plugins

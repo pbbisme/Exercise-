@@ -2,8 +2,8 @@ import axios from 'axios'
 import NProgress from 'nprogress'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://localhost:3000/api/';
-debugger;
+axios.defaults.baseURL = 'http://10.1.31.143:8080/contract-web/';
+
 axios.interceptors.request.use(config => {
     NProgress.start()
     config.headers['X-Requested-With'] = 'XMLHttpRequest'
@@ -23,16 +23,14 @@ axios.interceptors.response.use(response => {
 })
 
 function checkStatus(response) {
-    debugger;
     if (response.status === 200 || response.status === 304) {
-        if (+response.data.code === 200) return response
+        if (+response.data.code === 0) return response
         else throw new Error(response.data.message) // eslint-disable-line
     }
     throw new Error(response.statusText) // eslint-disable-line
 }
 
 export function request(config) {
-    debugger;
     return axios.request(config).then(checkStatus)
 }
 

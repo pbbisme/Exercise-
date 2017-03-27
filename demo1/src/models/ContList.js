@@ -1,29 +1,30 @@
 import * as  contListservice from "../services/contListservice.js";
 // import { list } from "../services/contListservice.js";
+import { parse } from 'qs'
 export default {
   namespace: 'ContList',
   state: {
-    contListData: [],
-    pageSize: 10,
+    contData:{},
+    pageSize: 8,
     pageNum: 1
   },
   reducers: {
     querySuccess(state, { payload }) {
-      console.log(payload)
-      return { ...state, contListData: payload }
+      return { ...state, contData: payload }
+    },
+    pageSizeChange(state, { payload }) {
+      alert('改变');
+      console.log(payload);
     }
   },
   effects: {
     *getContList({ payload }, { call, put, select }) {
-      const page = yield select(state =>({ ...state.ContList.pageSize,...state.ContList.pageNum}));
-      debugger;
-      const data = yield call(contListservice.list0, { ...page })
-      debugger;
+      const data = yield call(contListservice.list0, parse(payload))
+      // debugger;
       yield put({
         type: 'querySuccess',
-        payload: data.data.object.list
+        payload: data.data.object
       });
-      console.log(data)
     },
     *reload(action, { put, select }) {
       const page = yield select(state => state.users.page);
@@ -32,11 +33,25 @@ export default {
   },
   subscriptions: {
     setup({ dispatch, history }) {
-      history.listen(({ pathname }) => {
-        if (pathname === '/') {
-          dispatch({ type: 'getContList' })
+      history.listen(location => {
+        if (location.pathname === '/contlist') {
+          dispatch({
+            type: 'getContList',
+            payload: location.query
+          })
         }
       });
     }
+
+    //   setup ({ dispatch, history }) {
+    //   history.listen(location => {
+    //     if (location.pathname === '/users') {
+    //       dispatch({
+    //         type: 'query',
+    //         payload: location.query,
+    //       })
+    //     }
+    //   })
+    // }
   },
 };

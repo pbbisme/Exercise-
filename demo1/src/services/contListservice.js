@@ -7,12 +7,9 @@ const headers = {
   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
 };
 
-export function list0({ ...body }) {
-  
-  return axiosAjax.request('admin/topics', {
-    method: 'post',
-    body: "firstName=Nikhil&favColor=blue&password=easytoguess"
-  });
+export function list0(params) {
+
+  return axiosAjax.get('crmContMain/list',params);
 }
 
 export function list({ ...body }) {
