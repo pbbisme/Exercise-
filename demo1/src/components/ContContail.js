@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ContContail.css';
 import { connect } from 'dva';
+import { Link } from 'dva/router'
 import { Table, Icon, Pagination } from 'antd';
 
 function ContContail({ contInfo, seachInfo, dispatch }) {
@@ -34,6 +35,10 @@ function ContContail({ contInfo, seachInfo, dispatch }) {
     dataIndex: 'conid',
     key: 'conid',
   }, {
+    title: '合同编号',
+    dataIndex: 'conno',
+    key: 'conno',
+  }, {
     title: '跟进人',
     dataIndex: 'followUserName',
     key: 'followUserName',
@@ -49,6 +54,14 @@ function ContContail({ contInfo, seachInfo, dispatch }) {
     title: '住址',
     dataIndex: 'addr',
     key: 'addr',
+  }, {
+    title: '操作',
+    dataIndex: '',
+    key: 'option',
+    render: (text, record, index) => {
+      var id=record.conid;
+      return <Link to={`/condetail/${id}`} >合同详情</Link>
+    }
   }];
 
   return (

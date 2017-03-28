@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './ContContail.css';
 import ContContailComp from '../components/ContContail.js';
+import ContSearchComp from '../components/ContSearch.js';
 
 function ContContail({ contInfo, seachInfo, dispatch }) {
   return (
     <div className={styles.normal}>
+      <ContSearchComp seachInfo={seachInfo} dispatch={dispatch}/>
       <ContContailComp contInfo={contInfo} dispatch={dispatch} />
     </div>
   );

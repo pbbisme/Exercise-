@@ -7,8 +7,8 @@ export default {
   namespace: 'contContail',
   state: {
     contData: {},
-    // seachInfo: null,
     seachInfo: {
+      searchKey:'',//查询关键字
       pageNum: 1,
       pageSize: 10
     }
@@ -18,17 +18,17 @@ export default {
 
     },
     querySuccess(state, { payload }) {
-      return { ...state, contData: payload }
+      return { ...state, ...payload } //修改state
     },
   },
   effects: {
     *list({ payload }, { call, put, select }) {
       let seachInfo = yield select(state => state.contContail.seachInfo);//先获取默认查询条件
-      seachInfo={seachInfo,...payload}  //合并传入的插件条件
+      seachInfo={...seachInfo,...payload}  //合并传入的查询条件
       const data = yield call(contListservice.list0, parse(seachInfo)); //执行查询
       yield put({
         type: 'querySuccess',
-        payload: data.data.object
+        payload: {contData:data.data.object,seachInfo:seachInfo}
       });
     }
   },

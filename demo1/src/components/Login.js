@@ -20,14 +20,7 @@ function Login({ form: {
      <span style={{color:'red'}}>1 {userName}</span>
       <FormItem>
         {
-          getFieldDecorator('userName', {
-            rules: [
-              {
-                required: true,
-                message: '请填写用户名',
-              },
-            ],
-          })(<Input autoComplete="off" size="large" type="userName" onPressEnter={handleOk} placeholder="用户名" />)
+          getFieldDecorator('userName')(<Input autoComplete="off" size="large" type="userName" onPressEnter={handleOk} placeholder="用户名" />)
         }
       </FormItem>
       <FormItem>

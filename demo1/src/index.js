@@ -1,13 +1,21 @@
 import dva from 'dva';
 import './index.css';
-import { browserHistory } from 'dva/router';
+
+import { useRouterHistory } from 'dva/router';
+import { createHashHistory } from 'history';
+
 // 1. Initialize
 const app = dva({
-  history: browserHistory,
+  // history: browserHistory,
+
+  history: useRouterHistory(createHashHistory)({ queryKey: false }),
   onError: function (msg) {
     alert(msg.sagaStack || msg.message || "程序异常");
   }
 });
+
+
+app.model(require("./models/contDetail"));
 
 
 // app.model({});

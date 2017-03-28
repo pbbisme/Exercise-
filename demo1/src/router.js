@@ -7,8 +7,11 @@ import Login from "./routes/Login.js";
 import Users1 from "./routes/Users1.js";
 import ContContailR from "./routes/ContContail.js";
 import ContContail from "./routes/ContContail.js";
-
+import ContDetailR from './routes/ContDetail.js';
+import Nopage from './routes/Nopage.js'
 import App from './routes/app';
+
+import ContDetail from "./routes/ContDetail.js";
 
 const cached = {}
 const registerModel = (app, model) => {
@@ -62,9 +65,16 @@ const RouterConfig = ({ history, app }) => {
       component: App,
       getIndexRoute(nextState, cb) {
         require.ensure([], require => {
-          registerModel(app, require('./models/login'))
           cb(null, { component: require('./routes/Login') })
         }, 'login')
+      },
+    },  {
+      path: '/condetail/:id',
+      name: 'condetail',
+      getComponent(nextState, cb) {
+        require.ensure([], require => {
+          cb(null, require('./routes/ContDetail'))
+        }, 'condetail')
       },
     }, {
       path: '*',
@@ -83,10 +93,12 @@ const RouterConfig = ({ history, app }) => {
 // function RouterConfig({ history }) {
 //   return (
 //     <Router history={history}>
-//       <Route path="/" component={IndexPage} />
-//       <Route path="/login" component={Login} />
-//       <Route path="/contlist" component={IndexPage} />
-//       <Route path="/contlist2" component={ContContailR} />
+//       <Route path="/" component={App} >
+//         <Route path="/login" component={Login} />
+//         <Route path="/contlist" component={IndexPage} />
+//         <Route path="/contlist2" component={ContContailR} />
+//       </Route>
+
 //       <Route path="*" component={Nopage} />
 //     </Router>
 //   );
