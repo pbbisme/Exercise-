@@ -17,7 +17,7 @@ export default {
           type: 'loginSuccess',
           payload:payload,
         });
-      yield put(routerRedux.push('/'));
+      yield put(routerRedux.push('/contlist'));
     }
   },
   subscriptions: {},

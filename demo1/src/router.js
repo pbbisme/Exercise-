@@ -9,6 +9,7 @@ import ContContailR from "./routes/ContContail.js";
 import ContContail from "./routes/ContContail.js";
 
 import App from './routes/app';
+
 const cached = {}
 const registerModel = (app, model) => {
   if (!cached[model.namespace]) {
@@ -16,15 +17,16 @@ const registerModel = (app, model) => {
     cached[model.namespace] = 1
   }
 }
-const RouterConfig = function ({ history, app }) {
+
+const RouterConfig = ({ history, app }) => {
   const routes = [
     {
       path: '/',
       component: App,
       getIndexRoute(nextState, cb) {
-        require.ensure([], require => {
-          registerModel(app, require('./models/login'))
-          cb(null, { component: require('./routes/Login') })
+        require.ensure([], function (require) {
+          registerModel(app, require('./models/login'));
+          cb(null, { component: require('./routes/Login') });
         }, 'login')
       },
       childRoutes: [{
@@ -52,7 +54,7 @@ const RouterConfig = function ({ history, app }) {
           require.ensure([], require => {
             registerModel(app, require('./models/contContail'))
             cb(null, require('./routes/ContContail'))
-          }, 'contlist')
+          }, 'contlist2')
         },
       }]
     }, {

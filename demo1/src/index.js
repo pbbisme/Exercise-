@@ -3,7 +3,10 @@ import './index.css';
 import { browserHistory } from 'dva/router';
 // 1. Initialize
 const app = dva({
-  history: browserHistory
+  history: browserHistory,
+  onError: function (msg) {
+    alert(msg.sagaStack || msg.message || "程序异常");
+  }
 });
 
 
