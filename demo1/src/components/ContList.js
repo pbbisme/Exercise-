@@ -8,7 +8,7 @@ function ContList({ contState, dispatch }) {
     const { query, pathname } = location;
     debugger;
     dispatch(routerRedux.push({//根据路由分页
-      pathname,
+      pathname:'/contlist',
       query: {
         pageNum: current,
         pageSize: size,
