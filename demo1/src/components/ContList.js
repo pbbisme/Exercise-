@@ -5,7 +5,8 @@ import { Table, Icon, Pagination } from 'antd';
 
 function ContList({ contState, dispatch }) {
   let pageChange = (current, size) => {
-    const { query, pathname } = location
+    const { query, pathname } = location;
+    debugger;
     dispatch(routerRedux.push({//根据路由分页
       pathname,
       query: {
