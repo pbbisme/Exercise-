@@ -3,10 +3,9 @@ import styles from './ContList.css';
 import { routerRedux } from 'dva/router'
 import { Table, Icon, Pagination } from 'antd';
 
-function ContList({ contState, dispatch }) {
+function ContList({ contState, dispatch,location }) {
   let pageChange = (current, size) => {
     const { query, pathname } = location;
-    debugger;
     dispatch(routerRedux.push({//根据路由分页
       pathname:'/contlist',
       query: {

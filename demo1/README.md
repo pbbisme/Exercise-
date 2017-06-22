@@ -32,3 +32,22 @@ dva g route 路由名称
 >`npm install`   或  `cnpm install`
 
 >`npm start`  
+
+
+
+
+const pxtorem = require('postcss-pxtorem');
+module.exports = function (webpackConfig, env) {
+  // 对roadhog默认配置进行操作，比如：
+  // if (env === 'development') {
+  //   webpackConfig.plugins.push('...')
+  // }
+  webpackConfig.postcss=[];
+  // 引入高清方案
+  webpackConfig.postcss.push(pxtorem({
+    rootValue: 100,
+    propWhiteList: [],
+  }));
+
+  return webpackConfig;
+}

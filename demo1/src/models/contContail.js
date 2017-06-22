@@ -28,6 +28,7 @@ export default {
   },
   effects: {
     *list({ payload }, { call, put, select }) {
+      alert(1)
       let seachInfo = yield select(state => state.contContail.seachInfo);//先获取默认查询条件
       seachInfo = { ...seachInfo, ...payload }  //合并传入的查询条件
       const data = yield call(contListservice.list0, parse(seachInfo)); //执行查询

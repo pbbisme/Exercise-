@@ -3,8 +3,9 @@ import styles from './ContContail.css';
 import { connect } from 'dva';
 import { Link } from 'dva/router'
 import { Table, Icon, Pagination } from 'antd';
+import { routerRedux } from 'dva/router';
 
-function ContContail({ contInfo, seachInfo, dispatch }) {
+function ContContail({ contInfo, seachInfo, loading, dispatch }) {
   const dataSource = contInfo && contInfo.list || [];
   const pageChange = (current, size) => {
     console.log(current, size);
@@ -59,17 +60,25 @@ function ContContail({ contInfo, seachInfo, dispatch }) {
     dataIndex: '',
     key: 'option',
     render: (text, record, index) => {
-      var id=record.conid;
-      return <Link to={`/condetail/${id}`} >合同详情</Link>
+      var id = record.conid;
+      return (<div><Link to={`/condetail/${id}`} >合同详情</Link>
+        <button onClick={() => {
+          dispatch(routerRedux.push({pathname:'/login',query:{a:1,b:2}}));
+        }}>跳转测试</button></div>);
     }
   }];
 
   return (
     <div className={styles.normal}>
       <span>共计记录:{contInfo && contInfo.total}</span>
-      <Table loading={false} dataSource={dataSource} pagination={pagination} columns={columns} rowKey={record => record.conid} />
+      <Table loading={loading} dataSource={dataSource} pagination={pagination} columns={columns} rowKey={record => record.conid} />
     </div>
   );
 }
-export default ContContail;
+function mapStateToProps(state) {
+  return {
+    loading: state.loading.models.contContail
+  };
+}
+export default connect(mapStateToProps)(ContContail);
 

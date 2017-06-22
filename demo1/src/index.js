@@ -3,17 +3,19 @@ import './index.css';
 
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
-
+import createLoading from 'dva-loading';
 // 1. Initialize
 const app = dva({
   // history: browserHistory,
 
   history: useRouterHistory(createHashHistory)({ queryKey: false }),
   onError: function (msg) {
-    alert(msg.sagaStack || msg.message || "程序异常");
+    console.error(msg);
+    alert(msg.sagaStack || msg.message || "程序异ddddd常");
   }
 });
 
+app.use(createLoading());
 
 app.model(require("./models/contDetail"));
 

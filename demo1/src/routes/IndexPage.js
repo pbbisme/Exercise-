@@ -8,9 +8,9 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
-function IndexPage({ contData, dispatch }) {
+function IndexPage({ contData, dispatch, location}) {
   return (
-    <ContList contState={contData} dispatch={dispatch} />
+    <ContList contState={contData} dispatch={dispatch} location={location} />
   );
 }
 

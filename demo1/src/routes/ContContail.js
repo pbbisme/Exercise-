@@ -4,7 +4,7 @@ import styles from './ContContail.css';
 import ContContailComp from '../components/ContContail.js';
 import ContSearchComp from '../components/ContSearch.js';
 
-function ContContail({ contInfo, seachInfo, dispatch }) {
+function ContContail({ contInfo, seachInfo,loading, dispatch }) {
   return (
     <div className={styles.normal}>
       <ContSearchComp seachInfo={seachInfo} dispatch={dispatch}/>

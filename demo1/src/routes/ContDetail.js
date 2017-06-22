@@ -3,7 +3,6 @@ import { connect } from 'dva';
 import styles from './ContDetail.css';
 
 function ContDetail({params}) {
-  debugger;
   return (
     <div className={styles.normal}>
      {JSON.stringify(params)}

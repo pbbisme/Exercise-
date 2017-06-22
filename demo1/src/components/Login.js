@@ -1,7 +1,11 @@
 import React from 'react';
 import styles from './Login.css';
+import {cookie} from 'cookie_js';
+console.log(cookie)
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
+// cookie.set('key1', 'Abcdefg');
+// alert(cookie.get('key'));
 
 function Login({ form: {
     getFieldDecorator,

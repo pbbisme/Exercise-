@@ -1,13 +1,9 @@
 import axios from 'axios'
-import NProgress from 'nprogress'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://10.1.31.143:8080/contract-web/';
+axios.defaults.baseURL = 'http://10.1.30.140/contract-web/';
 
 axios.interceptors.request.use(config => {
-    NProgress.start()
-    config.headers['X-Requested-With'] = 'XMLHttpRequest'
-    config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
     config.data = qs.stringify(config.data)
     return config
 }, error => {
@@ -15,17 +11,19 @@ axios.interceptors.request.use(config => {
 })
 
 axios.interceptors.response.use(response => {
-    NProgress.done()
-    return response
+    return response;
 }, error => {
-    NProgress.done()
     return Promise.reject(error)
 })
 
 function checkStatus(response) {
     if (response.status === 200 || response.status === 304) {
-        if (+response.data.code === 0) return response
-        else throw new Error(response.data.message) // eslint-disable-line
+        if (typeof (response.data) === 'string')
+            return JSON.parse(response.data);
+        else
+            return response.data
+        // if (+response.data.code === 0){ return response}
+        // else throw new Error(response.data.message) // eslint-disable-line
     }
     throw new Error(response.statusText) // eslint-disable-line
 }

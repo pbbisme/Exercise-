@@ -27,13 +27,13 @@ function App({ children, location, dispatch }) {
         <Menu
         mode="inline"
         // theme="dark"
-        defaultSelectedKeys={["/contlist"]}
+        defaultSelectedKeys={[location.pathname]}
         defaultOpenKeys={['sub1']}
         style={{ height: '100%' }}
       >
         <SubMenu key="sub1" title={<span><Icon type="user" />合同管理</span>}>
           <Menu.Item key="/login">
-            <Link to="/login" >登录
+            <Link to="/login" target="_blank">登录
                 </Link>
           </Menu.Item>
           <Menu.Item key="/contlist">

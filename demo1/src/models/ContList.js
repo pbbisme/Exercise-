@@ -23,7 +23,7 @@ export default {
       // debugger;
       yield put({
         type: 'querySuccess',
-        payload: data.data.object
+        payload: data.object
       });
     },
     *reload(action, { put, select }) {
